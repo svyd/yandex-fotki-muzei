@@ -15,4 +15,9 @@
     <string name="everyNineHours">Every 9 hours</string>
     <string name="everyTwelveHours">Every 12 hours</string>
     <string name="everyDay">Every day</string>
+
+    <!-- Data sources -->
+    <string name="pod">Photo of the Day</string>
+    <string name="popular">Popular</string>
+
 </resources>

@@ -10,7 +10,8 @@ import android.util.Log;
  */
 public class PreferenceHelper {
 
-    public static String SHARED_PREF_INTERVAL = "SHARED_PREF_INTERVAL";
+    public static String SHARED_PREF_INTERVAL   = "SHARED_PREF_INTERVAL";
+    public static String SHARED_PREF_SOURCE_URL = "SHARED_PREF_SOURCE_URL";
 
     public static String UPDATE_ON_WIFI_ONLY = "UPDATE_ON_WIFI_ONLY";
 
@@ -55,6 +56,19 @@ public class PreferenceHelper {
         }
     }
 
+    private static void updatePref(String key, String value) {
+        SharedPreferences.Editor edit = prefs.edit();
+        edit.putString(key, value);
+
+        if (Utils.hasGingerbread()) {
+            edit.apply();
+        } else {
+            if (!edit.commit()) {
+                Log.w(Utils.LOG_TAG, "preference save failed!");
+            }
+        }
+    }
+
     public static void setInterval(int interval) {
         updatePref(SHARED_PREF_INTERVAL, interval);
     }
@@ -69,5 +83,13 @@ public class PreferenceHelper {
 
     public static boolean isWiFiChecked() {
         return prefs.getBoolean(UPDATE_ON_WIFI_ONLY, false);
+    }
+
+    public static void setSourceUrl(String sourceUrl) {
+        updatePref(SHARED_PREF_SOURCE_URL, sourceUrl);
+    }
+
+    public static String getSourceUrl() {
+        return prefs.getString(SHARED_PREF_SOURCE_URL, YandexFotkiArtSource.POD);
     }
 }

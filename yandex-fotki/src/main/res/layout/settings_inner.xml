@@ -56,8 +56,7 @@
             android:shadowDy="1.0"
             android:shadowRadius="1.0"
             android:text="@string/otherSettings"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="24sp" />
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
 
         <LinearLayout
             android:layout_width="match_parent"
