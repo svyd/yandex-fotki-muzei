@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Yandex Fotki (Muzei Source)</string>
     <string name="source_name">Yandex Fotki</string>
-    <string name="source_description">Photos from Yandex Fotki</string>
+    <string name="source_description">Russian Photos from Yandex Fotki</string>
 
     <string name="dataSource">Data Source</string>
     <string name="sourceType">Source Type</string>

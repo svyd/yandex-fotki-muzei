@@ -56,6 +56,19 @@ public class SettingsActivity extends Activity{
 
         mSourcesSpinner.setAdapter(new ArrayAdapter<Source>(this,
                 android.R.layout.simple_list_item_1, mSourceTypeList));
+
+        String mSourceUrl = PreferenceHelper.getSourceUrl();
+
+        if (mSourceUrl.equals(YandexFotkiArtSource.POD)) {
+            setPODIntervalEnabled(false);
+        } else {
+            setPODIntervalEnabled(true);
+        }
+
+        for (int i = 0; i < mSourceTypeList.size(); i++)
+            if (mSourceUrl.equals(mSourceTypeList.get(i).getUrlName()))
+                mSourcesSpinner.setSelection(i, true);
+
         mSourcesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
@@ -72,18 +85,6 @@ public class SettingsActivity extends Activity{
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {}
         });
-
-        String mSourceUrl = PreferenceHelper.getSourceUrl();
-
-        if (mSourceUrl.equals(YandexFotkiArtSource.POD)) {
-            setPODIntervalEnabled(false);
-        } else {
-            setPODIntervalEnabled(true);
-        }
-
-        for (int i = 0; i < mSourceTypeList.size(); i++)
-            if (mSourceUrl.equals(mSourceTypeList.get(i).getUrlName()))
-                mSourcesSpinner.setSelection(i, true);
     }
 
     private void setupWiFiCheckBox() {

@@ -7,8 +7,6 @@ import android.text.TextUtils;
 import com.google.android.apps.muzei.api.Artwork;
 import com.google.android.apps.muzei.api.RemoteMuzeiArtSource;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Random;
 
 import retrofit.ErrorHandler;
@@ -81,11 +79,9 @@ public class YandexFotkiArtSource extends RemoteMuzeiArtSource {
                 create(YandexFotkiServiceInterface.class);
 
         if (PreferenceHelper.getSourceUrl().equals(POD)) {
-            response = yandexFotkiService.getPODPhoto(
-                    new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()));
+            response = yandexFotkiService.getPODPhoto(Utils.getDate());
         } else {
-            response = yandexFotkiService.getTopPhotos(
-                    new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()));
+            response = yandexFotkiService.getTopPhotos(Utils.getDate());
         }
 
 

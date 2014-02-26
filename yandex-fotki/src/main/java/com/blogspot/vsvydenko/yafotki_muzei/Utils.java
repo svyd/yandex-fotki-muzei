@@ -5,6 +5,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 /**
  * Created by vsvydenko on 26.02.14.
  */
@@ -26,5 +29,9 @@ public class Utils {
 
     public static boolean hasGingerbread() {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD;
+    }
+
+    public static String getDate() {
+        return new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
     }
 }
