@@ -15,6 +15,10 @@ public interface YandexFotkiServiceInterface {
     @GET("/top/updated;{date}/")
     PhotosResponse getTopPhotos(@Path("date") String date);
 
+    @Headers("Accept: application/json")
+    @GET("/podhistory/poddate;{date}/?limit=1")
+    PhotosResponse getPODPhoto(@Path("date") String date);
+
     static class PhotosResponse {
         List<Photo> entries;
     }

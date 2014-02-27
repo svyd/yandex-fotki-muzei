@@ -1,6 +1,7 @@
 package com.blogspot.vsvydenko.yafotki_muzei;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +29,7 @@ public class SettingsActivity extends Activity{
 
 
     private List<Interval> mIntervalList = new ArrayList<Interval>();
+    private List<Source> mSourceTypeList = new ArrayList<Source>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,8 +41,50 @@ public class SettingsActivity extends Activity{
     }
 
     private void initializeContent() {
+        setupSourcesSpinner();
         setupIntervalSpinner();
         setupWiFiCheckBox();
+    }
+
+    private void setupSourcesSpinner() {
+
+        Spinner mSourcesSpinner = (Spinner) findViewById(R.id.sourceTypeSpinner);
+
+        mSourceTypeList.clear();
+        mSourceTypeList.add(new Source(getString(R.string.pod), YandexFotkiArtSource.POD));
+        mSourceTypeList.add(new Source(getString(R.string.popular), YandexFotkiArtSource.POPULAR));
+
+        mSourcesSpinner.setAdapter(new ArrayAdapter<Source>(this,
+                android.R.layout.simple_list_item_1, mSourceTypeList));
+
+        String mSourceUrl = PreferenceHelper.getSourceUrl();
+
+        if (mSourceUrl.equals(YandexFotkiArtSource.POD)) {
+            setPODIntervalEnabled(false);
+        } else {
+            setPODIntervalEnabled(true);
+        }
+
+        for (int i = 0; i < mSourceTypeList.size(); i++)
+            if (mSourceUrl.equals(mSourceTypeList.get(i).getUrlName()))
+                mSourcesSpinner.setSelection(i, true);
+
+        mSourcesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                String sourceUrl = mSourceTypeList.get(arg2).getUrlName();
+                PreferenceHelper.setSourceUrl(sourceUrl);
+                if (sourceUrl.equals(YandexFotkiArtSource.POD)) {
+                    setPODIntervalEnabled(false);
+                } else {
+                    setPODIntervalEnabled(true);
+                }
+                forceUpdate();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {}
+        });
     }
 
     private void setupWiFiCheckBox() {
@@ -93,6 +137,27 @@ public class SettingsActivity extends Activity{
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void forceUpdate() {
+        if (PreferenceHelper.isWiFiChecked() && !Utils.isWiFiOn(this))
+            return;
+
+
+        startService(new Intent(SettingsActivity.this, YandexFotkiArtSource.class)
+                .setAction(YandexFotkiArtSource.ACTION_UPDATE));
+    }
+
+    private void setPODIntervalEnabled(boolean enable) {
+
+        Spinner mRefreshIntervalSpinner = (Spinner) findViewById(R.id.refreshIntervalSpinner);
+
+        if (enable) {
+            mRefreshIntervalSpinner.setEnabled(true);
+        } else {
+            mRefreshIntervalSpinner.setSelection(mIntervalList.size() - 1);
+            mRefreshIntervalSpinner.setEnabled(false);
         }
     }
 
