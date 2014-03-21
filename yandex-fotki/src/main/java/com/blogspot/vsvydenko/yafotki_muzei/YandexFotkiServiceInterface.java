@@ -12,8 +12,8 @@ import retrofit.http.Path;
 public interface YandexFotkiServiceInterface {
 
     @Headers("Accept: application/json")
-    @GET("/top/updated;{date}/")
-    PhotosResponse getTopPhotos(@Path("date") String date);
+    @GET("/top/")
+    PhotosResponse getTopPhotos();
 
     @Headers("Accept: application/json")
     @GET("/podhistory/poddate;{date}/?limit=1")

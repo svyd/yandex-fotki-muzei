@@ -81,7 +81,7 @@ public class YandexFotkiArtSource extends RemoteMuzeiArtSource {
         if (PreferenceHelper.getSourceUrl().equals(POD)) {
             response = yandexFotkiService.getPODPhoto(Utils.getDate());
         } else {
-            response = yandexFotkiService.getTopPhotos(Utils.getDate());
+            response = yandexFotkiService.getTopPhotos();
         }
 
 
