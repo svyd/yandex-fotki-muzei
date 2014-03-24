@@ -82,7 +82,7 @@ public class PreferenceHelper {
     }
 
     public static boolean isWiFiChecked() {
-        return prefs.getBoolean(UPDATE_ON_WIFI_ONLY, false);
+        return prefs.getBoolean(UPDATE_ON_WIFI_ONLY, true);
     }
 
     public static void setSourceUrl(String sourceUrl) {
