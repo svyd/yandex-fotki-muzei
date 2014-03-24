@@ -2,18 +2,40 @@ apply plugin: 'android'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.0.1"
+    buildToolsVersion "19.0.3"
 
     defaultConfig {
         minSdkVersion 17
         targetSdkVersion 19
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.2"
     }
+
+    signingConfigs {
+
+
+        release {
+            def console = System.console()
+
+            storeFile file("<path_to_your.keystore>")
+            keyAlias "key_alias"
+
+            if (console != null) {
+                storePassword System.console().readLine("\nStore password: ")
+            }
+
+            if (console != null) {
+                keyPassword System.console().readLine("Key alias password: ")
+            }
+
+        }
+    }
+
     buildTypes {
         release {
             runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.release
         }
     }
 }
@@ -21,5 +43,4 @@ android {
 dependencies {
     compile 'com.google.android.apps.muzei:muzei-api:+'
     compile 'com.squareup.retrofit:retrofit:1.3.0'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
 }
