@@ -21,5 +21,6 @@
     <string name="popular">Popular</string>
     <string name="action_share_artwork">Share photo</string>
     <string name="yandexfotki_source_error_no_artwork_to_share">No artwork to share.</string>
+    <string name="rate_extension">Rate Extension</string>
 
 </resources>

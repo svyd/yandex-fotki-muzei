@@ -2,6 +2,7 @@ package com.blogspot.vsvydenko.yafotki_muzei;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -44,6 +45,7 @@ public class SettingsActivity extends Activity{
         setupSourcesSpinner();
         setupIntervalSpinner();
         setupWiFiCheckBox();
+        setupRateBtn();
     }
 
     private void setupSourcesSpinner() {
@@ -127,6 +129,19 @@ public class SettingsActivity extends Activity{
         for (int i = 0; i < mIntervalList.size(); i++)
             if (preference == mIntervalList.get(i).getTimeMillis())
                 mRefreshIntervalSpinner.setSelection(i, true);
+    }
+
+    private void setupRateBtn() {
+        View.OnClickListener click = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("market://details?id=" + getPackageName());
+                Intent rateIntent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(rateIntent);
+            }
+        };
+
+        findViewById(R.id.btnRate).setOnClickListener(click);
     }
 
     @Override
