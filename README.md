@@ -27,7 +27,7 @@ Developed By
 Screenshots
 ===========
 <img src="https://lh6.ggpht.com/GP4yVC43oL1m-L_FexV1KBRPiuReh79YGeT-Tz6EasTivnBGOhBMYJpwqytzxYauAw">
-<img src="https://lh3.ggpht.com/AAQ4-Z0pcKh8UwrxSQVel3gfI8pX97dvQrfx0Kv6qtl0Fsp6CO9g9tvpyZwtTa-OWw">
+<img src="https://lh6.ggpht.com/65eONFwk_RQKGA9ZZq4nuYL4Cny1D70LSTdf8PtiF1R1Rht9lgMO6lRB3nWVMhJk_g">
 <img src="https://lh5.ggpht.com/oHjD_zC-nTcpgtcUFneBObm8j9zFcqTbd7Ce9xM8HFOvLibyepnbUpCNrBJXHph6iLg">
 
 [1]: https://play.google.com/store/apps/details?id=com.blogspot.vsvydenko.yafotki_muzei
